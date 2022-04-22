@@ -35,8 +35,8 @@ from packageurl import PackageURL  # type: ignore
 from pkg_resources import DistInfoDistribution  # type: ignore
 
 if sys.version_info >= (3, 8):
-    from importlib.metadata import metadata
     from email.message import Message as _MetadataReturn
+    from importlib.metadata import metadata
 else:
     from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
 
@@ -68,14 +68,12 @@ class EnvironmentParser(BaseParser):
                 c.author = i_metadata['Author']
 
             if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
-                c.licenses.append(
-                    LicenseChoice(license_expression=i_metadata['License'])
-                )
+                c.licenses.add(LicenseChoice(license_expression=i_metadata['License']))
 
             if 'Classifier' in i_metadata:
                 for classifier in i_metadata['Classifier']:
                     if str(classifier).startswith('License :: OSI Approved :: '):
-                        c.licenses.append(
+                        c.licenses.add(
                             LicenseChoice(
                                 license_expression=str(classifier).replace('License :: OSI Approved :: ', '').strip()
                             )

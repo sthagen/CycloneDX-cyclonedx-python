@@ -2,6 +2,48 @@
 
 <!--next-version-placeholder-->
 
+## v3.2.1 (2022-04-05)
+### Fix
+* Cli default file for json format ([`8747620`](https://github.com/CycloneDX/cyclonedx-python/commit/8747620dac7ed3eeff69369c05dfb6386a56e549))
+
+## v3.2.0 (2022-04-05)
+### Feature
+* Make module callable ([`5b3d8d7`](https://github.com/CycloneDX/cyclonedx-python/commit/5b3d8d7641b0f2825e5419b5ad8c8a75bf66403b))
+
+### Documentation
+* Describe methods to call the tool ([`2bac83a`](https://github.com/CycloneDX/cyclonedx-python/commit/2bac83a6c6f7354d8b7218c32b4b2e5d96b2fd0c))
+
+## v3.1.1 (2022-03-21)
+### Fix
+* **conda-parser:** Version recognition for strings ([#332](https://github.com/CycloneDX/cyclonedx-python/issues/332)) ([`65246dd`](https://github.com/CycloneDX/cyclonedx-python/commit/65246ddfa9a55ce53fbf87f33b1f269c519f9b3a))
+
+### Documentation
+* Add link to https://cyclonedx.org/ to README ([`fc4b8e4`](https://github.com/CycloneDX/cyclonedx-python/commit/fc4b8e44bec39b175bb8994e0a59bc5076d1b2a6))
+* Add hint for RTFD to README ([`cf4f534`](https://github.com/CycloneDX/cyclonedx-python/commit/cf4f534401dc90dbe093ce1a094efb02e5fb7c90))
+* Add RTFD shield to README ([`7fef6ee`](https://github.com/CycloneDX/cyclonedx-python/commit/7fef6eec5d553c7687e7b2d2af1ba4e330f16490))
+* Fixed link to RTFD ([`3a8669a`](https://github.com/CycloneDX/cyclonedx-python/commit/3a8669ad7ba4230d06d1e0965342a5a836a52d1f))
+
+## v3.1.0 (2022-03-10)
+### Feature
+* Add pip-requirements-parser and update virtualenv to latest version ([`73b2182`](https://github.com/CycloneDX/cyclonedx-python/commit/73b2182550d9635a0a5ab8e4f2226f37cf6b1b35))
+
+### Fix
+* Sort imports ([`fdec44b`](https://github.com/CycloneDX/cyclonedx-python/commit/fdec44bc111d7eb1add080a219dbc77744678f8a))
+* Try to fix the temp file issue on Windows machines ([`684d4f0`](https://github.com/CycloneDX/cyclonedx-python/commit/684d4f03ad6f8c0764dfaf8f3a38a09b91b69e5d))
+
+### Documentation
+* Update RequirementsFileParser docs to include nested file support ([`9e9021d`](https://github.com/CycloneDX/cyclonedx-python/commit/9e9021decb19d8262e87fe6955577c1bd1309d95))
+
+## v3.0.0 (2022-02-21)
+### Feature
+* Bump to latest `cyclonedx-python-lib` ([`5902fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/5902fbf9dc5becdf7d92180242488e56b998d9de))
+* Added marker and classifiers to denote this as typed ([#313](https://github.com/CycloneDX/cyclonedx-python/issues/313)) ([`f317353`](https://github.com/CycloneDX/cyclonedx-python/commit/f317353bd7a24dbf4fb31642d766d94da609eb42))
+* Update to latest RC of `cyclonedx-python-lib` ([`6c8b517`](https://github.com/CycloneDX/cyclonedx-python/commit/6c8b5173f07329b2086312d27af5d111f9b2c7ed))
+* Update to latest RC of `cyclonedx-python-lib` ([`bc8ee6b`](https://github.com/CycloneDX/cyclonedx-python/commit/bc8ee6bb115dd5214358430f64bd0581de5cb2e4))
+
+### Breaking
+* Default Schema Version has been replaced by notion of LATEST supported Schema Version ([`5902fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/5902fbf9dc5becdf7d92180242488e56b998d9de))
+
 ## v2.0.3 (2022-02-03)
 ### Fix
 * Docker image releae checkout ref w/o `tags` ([#309](https://github.com/CycloneDX/cyclonedx-python/issues/309)) ([`5d8b1e1`](https://github.com/CycloneDX/cyclonedx-python/commit/5d8b1e159c2ced59e810b9e9564e19a29fe263d0))
