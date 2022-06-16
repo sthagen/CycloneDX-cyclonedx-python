@@ -21,14 +21,16 @@ import json
 from abc import ABCMeta, abstractmethod
 from typing import List
 
-from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashAlgorithm, HashType, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
-# See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL  # type: ignore
-
-from ..utils.conda import CondaPackage, parse_conda_json_to_conda_package, parse_conda_list_str_to_conda_package
+from ..utils.conda import (
+    CondaPackage,
+    conda_package_to_purl,
+    parse_conda_json_to_conda_package,
+    parse_conda_list_str_to_conda_package,
+)
 
 
 class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
@@ -60,17 +62,21 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
 
         """
         for conda_package in self._conda_packages:
+            purl = conda_package_to_purl(conda_package)
             c = Component(
-                name=conda_package['name'], version=str(conda_package['version']),
-                purl=PackageURL(
-                    type='pypi', name=conda_package['name'], version=str(conda_package['version'])
-                )
+                name=conda_package['name'], version=conda_package['version'],
+                purl=purl
             )
             c.external_references.add(ExternalReference(
                 reference_type=ExternalReferenceType.DISTRIBUTION,
                 url=XsUri(conda_package['base_url']),
                 comment=f"Distribution name {conda_package['dist_name']}"
             ))
+            if conda_package['md5_hash'] is not None:
+                c.hashes.add(HashType(
+                    algorithm=HashAlgorithm.MD5,
+                    hash_value=str(conda_package['md5_hash'])
+                ))
 
             self._components.append(c)
 
