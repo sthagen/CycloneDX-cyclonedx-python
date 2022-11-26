@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cyclonedx-bom"
-version = "3.7.1"
+version = "3.7.2"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
 license = "Apache-2.0"
@@ -55,7 +55,7 @@ coverage = [
 mypy = "^0.971"
 flake8 = "^4.0.1"
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
-flake8-bugbear = "^22.8.23"
+flake8-bugbear = "^22.9.23"
 flake8-isort = { version = "^4.2.0", python = ">= 3.6.1" }
 # `types-toml` need to stay in sync with version of `toml`
 types-toml = "^0.10.8"
