@@ -233,7 +233,7 @@ class CycloneDxCmd:
         )
         output_group.add_argument(
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
-            help='Use a component''s purl for the bom-ref value, instead of a random UUID'
+            help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
@@ -321,10 +321,21 @@ class CycloneDxCmd:
             raise CycloneDxCmdException('Parser type could not be determined.')
 
 
-def main(*, prog_name: Optional[str] = None) -> None:
+def main(*, prog_name: Optional[str] = None, prog_name_instead: Optional[str] = None) -> None:
     parser = CycloneDxCmd.get_arg_parser(prog=prog_name)
+    if prog_name_instead:
+        print('',
+              '!!! DEPRECATION WARNING !!!',
+              f'! The used call method "{parser.prog}" is deprecated.',
+              f'! Use "{prog_name_instead}" instead.',
+              '',
+              sep='\n', file=sys.stderr)
     args = parser.parse_args()
     CycloneDxCmd(args).execute()
+
+
+def main_deprecated(*, prog_name: Optional[str] = None) -> None:
+    main(prog_name=prog_name, prog_name_instead='cyclonedx-py')
 
 
 if __name__ == "__main__":
