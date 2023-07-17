@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cyclonedx-bom"
-version = "3.11.0"
+version = "3.11.2"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = [
   "Steven Springett <steve.springett@owasp.org>",
@@ -84,7 +84,7 @@ build-backend = "poetry.core.masonry.api"
 version_variable = [
     "pyproject.toml:version"
 ]
-branch = "master"
+branch = "main"
 upload_to_pypi = true
 upload_to_repository = true
 upload_to_release = true

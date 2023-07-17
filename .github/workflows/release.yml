@@ -21,9 +21,12 @@ name: Release
 
 on:
   push:
-    branches:
-      - master
+    branches: ["main"]
   workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 env:
   REPORTS_DIR: CI_reports
@@ -38,10 +41,9 @@ jobs:
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
     # limit this to being run on regular commits, not the commits that semantic-release will create
     if: |
-      github.ref == 'refs/heads/master' &&
+      github.ref == 'refs/heads/main' &&
       !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
-    concurrency: release-PyPI  # one release at a time, prevent hickups
     outputs:
       version-before: ${{ steps.before-release.outputs.version }}  # version may be empty
       released:       ${{ steps.after-release.outputs.released }}  # optional bool-ish string
@@ -72,7 +74,7 @@ jobs:
         id: semantic-release
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
         # see https://github.com/relekang/python-semantic-release
-        uses: relekang/python-semantic-release@v7.33.1
+        uses: relekang/python-semantic-release@v7.34.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository_username: __token__
@@ -88,7 +90,7 @@ jobs:
           then
             echo "released=true" >> $GITHUB_OUTPUT
           fi
-        env: 
+        env:
           VERSION_PRE: ${{ steps.before-release.outputs.version }}
       - name: Artifact python dist
         if: |
@@ -102,7 +104,7 @@ jobs:
           if-no-files-found: error
           # Dist results are required for further processing.
           # Therefore, make sure that python-semantic-release is configuret to keep dist.
-          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist 
+          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist
 
   release-DockerHub:
     name: "Release: DockerHub"
@@ -114,7 +116,6 @@ jobs:
       needs.release-PyPI.outputs.released &&
       needs.release-PyPI.outputs.version-after
     runs-on: ubuntu-latest
-    concurrency: release-DockerHub  # because of the 'latest' tag
     env:
       VERSION: ${{ needs.release-PyPI.outputs.version-after }}
       ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
@@ -132,7 +133,7 @@ jobs:
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
         uses: actions/download-artifact@v3
-        with: 
+        with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
       - name: Build Docker Image (${{ env.VERSION }})
