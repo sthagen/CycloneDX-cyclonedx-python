@@ -7,7 +7,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 # keep in sync with `cyclonedx_py/_internal/utils/cdx.py`
 name = "cyclonedx-bom"
-version = "4.1.1"
+version = "4.1.2"
 description = "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments"
 authors = [
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
@@ -25,9 +25,7 @@ packages = [
 ]
 include = [
   # all is an object -> prevent parse issue with dependabot
-  { path="README.md", format =["sdist","wheel"] },
-  { path="LICENSE", format=["sdist","wheel"] },
-  { path="NOTICE", format=["sdist","wheel"] },
+  { path="README.md", format =["sdist"] },
   { path="tests", format=["sdist"] },
   { path="CHANGELOG.md", format=["sdist"] },
   { path="docs", format=["sdist"] },
