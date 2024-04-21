@@ -2,6 +2,39 @@
 
 
 
+## v4.4.1 (2024-04-21)
+
+### Fix
+
+* fix: release `lates` container image (#725)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`8ba9d0b`](https://github.com/CycloneDX/cyclonedx-python/commit/8ba9d0b35f9d9593b5a3e232bf5e92d79b42fab9))
+
+
+## v4.4.0 (2024-04-21)
+
+### Chore
+
+* chore: semantic-release git commit/sign valid email address
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`692b8ea`](https://github.com/CycloneDX/cyclonedx-python/commit/692b8eaa0aecf7821e829edd6324cf33f07a86b7))
+
+### Feature
+
+* feat: publish to GHCR (#724)
+
+Tee container image version of the app is also available on GitHubContainerRegistry: &lt;https://github.com/orgs/CycloneDX/packages/container/package/cyclonedx-python&gt;
+
+---------
+
+
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt;
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Signed-off-by: semantic-release &lt;semantic-release@bot.local&gt;
+Co-authored-by: jxdv &lt;virgoj@protonmail.com&gt;
+Co-authored-by: semantic-release &lt;semantic-release@bot.local&gt; ([`8c18484`](https://github.com/CycloneDX/cyclonedx-python/commit/8c184842af1a790692a898e9437a209a8fa65422))
+
+
 ## v4.3.0 (2024-04-20)
 
 ### Feature
