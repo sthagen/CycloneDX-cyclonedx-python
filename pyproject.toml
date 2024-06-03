@@ -89,7 +89,7 @@ flake8-use-fstring = "1.4"
 pep8-naming = "0.14.1"
 flake8-logging = "1.6.0"
 isort = "5.13.2"
-autopep8 = "2.1.0"
+autopep8 = "2.2.0"
 mypy = "1.10.0"
 bandit = "1.7.8"
 tox = "4.15.0"
@@ -124,6 +124,8 @@ upload_to_vcs_release = true
 changelog_file = "CHANGELOG.md"
 exclude_commit_patterns = [
   "chore\\(release\\):",
+  "chore\\(deps\\):",
+  "chore\\(deps-dev\\):",
 ]
 
 [tool.semantic_release.branches.main]
