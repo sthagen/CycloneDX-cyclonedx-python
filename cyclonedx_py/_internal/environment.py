@@ -31,7 +31,7 @@ from cyclonedx.model.component import Component, ComponentType
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
-from . import BomBuilder, PropertyName
+from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
@@ -168,7 +168,7 @@ class EnvironmentBB(BomBuilder):
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             del dist_meta, dist_name, dist_version
-            self.__component_add_extred_and_purl(component, packagesource4dist(dist))
+            self.__component_add_extref_and_purl(component, packagesource4dist(dist))
             all_components[normalize_packagename(component.name)] = (
                 component,
                 tuple(map(Requirement, dist.requires or ()))
@@ -210,7 +210,7 @@ class EnvironmentBB(BomBuilder):
                 )
             bom.register_dependency(component, component_deps)
 
-    def __component_add_extred_and_purl(self, component: 'Component',
+    def __component_add_extref_and_purl(self, component: 'Component',
                                         packagesource: Optional['PackageSource']) -> None:
         purl_qs = {}  # https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         purl_subpath = None
@@ -236,8 +236,12 @@ class EnvironmentBB(BomBuilder):
             del packagesource_extref
         if packagesource is None or not packagesource.url.startswith('file://'):
             # no purl for locals and unpublished packages
-            component.purl = PackageURL('pypi', name=component.name, version=component.version,
-                                        qualifiers=purl_qs, subpath=purl_subpath)
+            component.purl = PackageURL(
+                type=PurlTypePypi,
+                name=component.name,
+                version=component.version,
+                qualifiers=purl_qs,
+                subpath=purl_subpath)
 
     @staticmethod
     def __py_interpreter(value: str) -> str:
