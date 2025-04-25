@@ -15,12 +15,14 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-# !! version is managed by `semantic_release`
-# do not use typing here, or else `semantic_release` might have issues finding the variable
-__version__ = "6.0.0"  # noqa:Q000
+from sys import getdefaultencoding
 
-# There is no stable/public API.
-# However, you might call the stable CLI instead, like so:
-#   from sys import executable
-#   from subprocess import run
-#   run((executable, '-m', 'cyclonedx_py', '--help'))
+from chardet import detect as chardetect
+
+
+def bytes2str(data: bytes, *, errors: str = 'strict') -> str:
+    # see https://docs.python.org/3/library/codecs.html#standard-encodings
+    encoding = (chardetect(data)['encoding'] or getdefaultencoding()).replace(
+        # replace Windows-encoding with code-page
+        'Windows-', 'cp')
+    return data.decode(encoding, errors)
