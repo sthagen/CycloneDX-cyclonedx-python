@@ -42,6 +42,8 @@ env:
   PYTHON_VERSION_DEFAULT: "3.12"
   POETRY_VERSION: "1.8.1"
 
+permissions: {}
+
 jobs:
   quicktest:
     runs-on: ubuntu-latest
@@ -111,7 +113,7 @@ jobs:
         id: release
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
         # see https://github.com/python-semantic-release/python-semantic-release
-        uses: python-semantic-release/python-semantic-release@v9.21.0
+        uses: python-semantic-release/python-semantic-release@v9.21.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: ${{ github.event.inputs.release_force }}
@@ -160,6 +162,8 @@ jobs:
       needs.release-PyPI.outputs.version &&
       needs.release-PyPI.outputs.tag
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     env:
       VERSION: ${{ needs.release-PyPI.outputs.version }}
       ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
