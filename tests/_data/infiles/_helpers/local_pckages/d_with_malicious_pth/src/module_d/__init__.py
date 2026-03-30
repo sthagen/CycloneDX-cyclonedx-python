@@ -15,12 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-# !! version is managed by `semantic_release`
-# do not use typing here, or else `semantic_release` might have issues finding the variable
-__version__ = "7.3.0"  # noqa:Q000
 
-# There is no stable/public API.
-# However, you might call the stable CLI instead, like so:
-#   from sys import executable
-#   from subprocess import run
-#   run((executable, '-m', 'cyclonedx_py', '--help'))
+"""
+module C
+"""

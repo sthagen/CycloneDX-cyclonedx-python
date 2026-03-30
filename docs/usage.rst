@@ -61,6 +61,7 @@ The full documentation can be issued by running with ``environment --help``:
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
                                     [--pyproject <file>] [--mc-type <type>]
+                                    [-S]
                                     [<python>]
 
     Build an SBOM from Python (virtual) environment
@@ -70,6 +71,8 @@ The full documentation can be issued by running with ``environment --help``:
 
     options:
       -h, --help            show this help message and exit
+      -S                    Do not implicitly import site during Python path detection.
+                            Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.
       --gather-license-texts
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
@@ -465,7 +468,7 @@ For PDM
 -------
 
 Support for `PDM`_ manifest and lockfile is not explicitly implemented, yet.
-See https://github.com/CycloneDX/cyclonedx-python/issues/604
+See `ticket #604 <https://github.com/CycloneDX/cyclonedx-python/issues/604>`_.
 
 However, since PDM utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python (virtual) environments as described above.
@@ -482,6 +485,8 @@ For uv
 -------
 
 Support for `uv`_ manifest and lockfile is not explicitly implemented, yet.
+See `ticket #604 <https://github.com/CycloneDX/cyclonedx-python/issues/604>`_
+and `ticket #1029 <https://github.com/CycloneDX/cyclonedx-python/issues/1029>`_.
 
 However, since uv utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python (virtual) environments as described above.
