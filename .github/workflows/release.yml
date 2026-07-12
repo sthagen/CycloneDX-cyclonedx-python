@@ -71,12 +71,12 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           persist-credentials: false
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
       - name: Install poetry
@@ -96,12 +96,12 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           persist-credentials: false
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
       - name: Install poetry
@@ -136,18 +136,18 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           persist-credentials: false
           fetch-depth: 0
       - name: Setup python
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1  # v6.3.0
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
       - name: Install and configure Poetry
         # See https://github.com/snok/install-poetry
-        uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a  # v1.4.1
+        uses: snok/install-poetry@a783c322200f0519c7926aa6faa857c4e23e9263  # v1.4.2
         with:
           version: ${{ env.POETRY_VERSION }}
           virtualenvs-create: true
@@ -225,7 +225,7 @@ jobs:
           echo "GHCR_REPO=${GHCR_REPO@L}" >> "${GITHUB_ENV}"
       - name: Checkout code (${{ env.TAG }})
         # see https://github.com/actions/checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           persist-credentials: false
           ref: ${{ needs.release-PyPI.outputs.tag }}
